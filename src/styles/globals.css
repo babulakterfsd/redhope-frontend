@@ -13,7 +13,6 @@ body {
 
 /* common classes */
 
-
 /* responsive classes */
 .main-container {
   @apply w-full mx-auto px-6 lg:px-2;

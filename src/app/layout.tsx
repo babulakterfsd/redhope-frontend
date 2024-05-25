@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../styles/globals.css";
+import type { Metadata } from 'next';
+import '../styles/globals.css';
 
 export const metadata: Metadata = {
-  title: "RedHope: Every drop counts",
-  description: "RedHope is a blood donation platform that connects donors with recipients.",
+  title: 'RedHope: Every drop counts',
+  description:
+    'RedHope is a blood donation platform that connects donors with recipients.',
 };
 
 export default function RootLayout({
