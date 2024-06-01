@@ -3,7 +3,7 @@ import CommonLayout from '@/components/layout/CommonLayout';
 const page = () => {
   return (
     <CommonLayout>
-      <h3>This is homepage</h3>
+      <h3>This is about page</h3>
     </CommonLayout>
   );
 };

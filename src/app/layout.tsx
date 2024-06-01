@@ -2,7 +2,6 @@ import Providers from '@/util/providers';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 
-import RenderLayout from '@/components/shared/RenderLayout';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className="overflow-x-hidden">
         <Providers session={session}>
-          <RenderLayout children={children} />
+          <div className="h-screen">{children}</div>
         </Providers>
       </body>
     </html>
