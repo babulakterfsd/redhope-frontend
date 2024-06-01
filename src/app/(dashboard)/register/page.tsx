@@ -52,6 +52,8 @@ const Register = () => {
         bloodGroup,
         isAvailableToDonate: true,
       };
+
+      console.log(signupData);
     }
   };
 

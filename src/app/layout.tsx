@@ -2,6 +2,7 @@ import Providers from '@/util/providers';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 
+import { Toaster } from 'sonner';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-x-hidden">
+        <Toaster />
         <Providers session={session}>
           <div className="h-screen">{children}</div>
         </Providers>
