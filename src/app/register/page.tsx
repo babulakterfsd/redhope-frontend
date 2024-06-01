@@ -43,7 +43,14 @@ const Register = () => {
       });
       return;
     } else {
-      console.log(signupData);
+      signupData = {
+        name,
+        username,
+        email,
+        password,
+        bloodGroup,
+        isAvailableToDonate: true,
+      };
     }
   };
 
