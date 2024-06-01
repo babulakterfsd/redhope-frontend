@@ -1,8 +1,8 @@
-import Footer from '@/components/shared/Footer';
-import Navbar from '@/components/shared/Navbar';
 import Providers from '@/util/providers';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
+
+import RenderLayout from '@/components/shared/RenderLayout';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -17,13 +17,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession();
+
   return (
     <html lang="en">
-      <body>
+      <body className="overflow-x-hidden">
         <Providers session={session}>
-          <Navbar />
-          <div className="h-screen">{children}</div>
-          <Footer />
+          <RenderLayout children={children} />
         </Providers>
       </body>
     </html>

@@ -12,6 +12,17 @@ body {
 }
 
 /* common classes */
+.gradientTitle {
+  background: linear-gradient(
+    to right,
+    rgba(27, 191, 220, 1) 1%,
+    rgb(207, 60, 11) 100%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
 /* responsive classes */
 .main-container {
