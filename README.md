@@ -23,9 +23,9 @@
 
 ## How to run
 
-- First, clone the repo and install the dependencies using yarn install command.
-- then, build the project using yarn run build command.
-- at last, run the project using yarn run dev command.
+- First, clone the repo and install the dependencies using npm install command.
+- then, build the project using npm run build command.
+- at last, run the project using npm run dev command.
 
 ### live link
 
