@@ -1,6 +1,7 @@
 'use client';
 
 import DashboardLayout from '@/components/layout/DashboardLayout';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -72,12 +73,29 @@ const Register = () => {
         const data = await response.json();
         if (data?.statusCode === 201 && data?.data?.email) {
           setIsSubmitting(false);
-          toast.success('Account created successfully, please login', {
+          toast.success('Registration Successfull. ', {
             position: 'top-right',
             icon: '🚀',
             duration: 2000,
           });
-          router.push('/login');
+          // signin now as user is registered
+          signIn('credentials', {
+            email: signupData?.email,
+            password: signupData?.password,
+            redirect: false,
+          }).then((res) => {
+            if (res?.error) {
+              setIsSubmitting(false);
+              toast.error('Something went wrong while logging in..', {
+                position: 'top-right',
+                icon: '😢',
+                duration: 1500,
+              });
+            } else {
+              router.push('/dashboard');
+              setIsSubmitting(false);
+            }
+          });
         } else {
           setIsSubmitting(false);
           toast.error(data?.message, {
