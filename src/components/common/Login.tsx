@@ -101,7 +101,7 @@ const Login = () => {
                 Email: <span className="font-semibold">xpawal@gmail.com</span>
               </p>
               <p className="text-sm">
-                Password: <span className="font-semibold">awal123</span>
+                Password: <span className="font-semibold">xpawal123</span>
               </p>
             </div>
 
@@ -148,7 +148,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-red-100"
+                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-red-200"
                 disabled={isSubmitting}
               >
                 Sign in
