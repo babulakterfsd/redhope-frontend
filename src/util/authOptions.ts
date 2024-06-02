@@ -21,7 +21,7 @@ export const authOptions = {
         try {
           const { email, password } = credentials as TCredentials;
           const res = await axios.post(
-            `${process.env.BACKEND_PRODUCTION_URL}/auth/login`,
+            `${process.env.BACKEND_LOCAL_URL}/auth/login`,
             {
               email,
               password,
@@ -57,7 +57,7 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: '/signin',
+    signIn: '/login',
   },
   session: {
     strategy: 'jwt',
