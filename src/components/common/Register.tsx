@@ -234,10 +234,10 @@ const Register = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-red-200"
+                  className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   disabled={isSubmitting}
                 >
-                  Sign Up
+                  {isSubmitting ? 'Signing up...' : 'Register'}
                 </button>
                 <div className="flex items-center justify-between">
                   <p className="text-sm">Already Registered?</p>

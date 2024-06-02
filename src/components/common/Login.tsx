@@ -19,11 +19,12 @@ const Login = () => {
 
   const handleLogin = async (loginData: FieldValues) => {
     if (!loginData?.email || !loginData?.password) {
-      toast.error('Email or Password is missing', {
+      toast.error('Email and Password both field is required', {
         position: 'top-right',
         icon: '😢',
         duration: 1500,
       });
+      return;
     } else {
       setIsSubmitting(true);
       try {
@@ -34,7 +35,7 @@ const Login = () => {
         }).then((res) => {
           if (res?.error) {
             setIsSubmitting(false);
-            toast.error('Invalid email or password', {
+            toast.error('Please provide correct credentials.', {
               position: 'top-right',
               icon: '😢',
               duration: 1500,
@@ -51,7 +52,11 @@ const Login = () => {
         });
       } catch (error) {
         setIsSubmitting(false);
-        toast.error('Invalid email or password');
+        toast.error(' Something went wrong while logging in... ', {
+          position: 'top-right',
+          icon: '😢',
+          duration: 1500,
+        });
       }
     }
   };
@@ -148,10 +153,10 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-red-200"
+                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 disabled={isSubmitting}
               >
-                Sign in
+                {isSubmitting ? 'Logging in...' : 'Login'}
               </button>
               <div className="flex items-center justify-end space-x-1">
                 <p className="text-sm">Not Registered Yet?</p>
