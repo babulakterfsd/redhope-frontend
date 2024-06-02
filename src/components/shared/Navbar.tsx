@@ -1,5 +1,6 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -8,7 +9,8 @@ import logo from '/public/logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  let isLoggedIn = false;
+  const session = useSession();
+  const loggedInUser = session?.data?.user;
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -16,7 +18,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     setMenuOpen(!isMenuOpen);
-    isLoggedIn = false;
     toast.success('Logout Successful', {
       position: 'top-right',
       duration: 1000,
@@ -99,11 +100,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="mt-12 md:mt-0">
-                {isLoggedIn ? (
+                {loggedInUser?.email ? (
                   <Link
-                    href="/dashboard/profile"
+                    href="/dashboard"
                     className="mt-8 md:mt-0 md:ml-24 bg-red-300 rounded-md px-8 py-2 text-white hover:bg-red-400 transition-colors duration-300 ease-in-out"
-                    onClick={handleLogout}
                   >
                     My Profile
                   </Link>

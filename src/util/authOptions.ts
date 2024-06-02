@@ -20,16 +20,13 @@ export const authOptions = {
       async authorize(credentials, req) {
         try {
           const { email, password } = credentials as TCredentials;
-          const res = await axios.post(
-            `${process.env.BACKEND_LOCAL_URL}/auth/login`,
-            {
-              email,
-              password,
-            }
-          );
-          if (res.data.user) {
-            console.log(res);
-            return { ...res.data.user, token: res.data.token };
+          const res = await axios.post(`${process.env.SERVER_URL}/auth/login`, {
+            email,
+            password,
+          });
+          if (res?.data?.data?.user) {
+            console.log('res.data.user', res.data.user);
+            return { ...res?.data?.data?.user, token: res?.data?.data?.token };
           } else {
             return null;
           }

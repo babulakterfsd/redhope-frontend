@@ -33,12 +33,19 @@ const Login = () => {
           redirect: false,
         }).then((res) => {
           if (res?.error) {
-            console.log('res in error', res);
             setIsSubmitting(false);
-            toast.error('Invalid email or password');
+            toast.error('Invalid email or password', {
+              position: 'top-right',
+              icon: '😢',
+              duration: 1500,
+            });
           } else {
             router.push(callbackUrl || '/dashboard');
-            toast.success('Logged in successfully');
+            toast.success('Logged in successfully', {
+              position: 'top-right',
+              icon: '🚀',
+              duration: 1500,
+            });
             setIsSubmitting(false);
           }
         });
@@ -141,7 +148,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed"
+                className="w-full text-white bg-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:bg-red-100"
                 disabled={isSubmitting}
               >
                 Sign in
