@@ -1,5 +1,5 @@
 const DashboardLayout = (props: any) => {
-  return <div className="h-screen">{props.children}</div>;
+  return <div className="min-h-screen">{props.children}</div>;
 };
 
 export default DashboardLayout;

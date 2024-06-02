@@ -5,7 +5,7 @@ const CommonLayout = (props: any) => {
   return (
     <>
       <Navbar />
-      <div className="h-screen">{props.children}</div>
+      <div className="min-h-screen">{props.children}</div>
       <Footer />
     </>
   );

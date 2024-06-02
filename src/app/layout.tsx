@@ -23,7 +23,7 @@ export default async function RootLayout({
       <body className="overflow-x-hidden">
         <Toaster />
         <Providers session={session}>
-          <div className="h-screen">{children}</div>
+          <div className="min-h-screen">{children}</div>
         </Providers>
       </body>
     </html>
