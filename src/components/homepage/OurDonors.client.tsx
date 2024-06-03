@@ -3,13 +3,94 @@
 import { TDonor } from '@/types/common.types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import demodonor from '../../../public/demodonor.png';
 
-const OurDonorsClient = (donors: any) => {
-  const donorsList = donors?.donors?.data?.data?.slice(0, 10);
+const OurDonorsClient = () => {
+  const [donorsList, setDonorsList] = useState([]);
+  const [filterBloodGroup, setFilterBloodGroup] = useState('all');
+  const [filterisAvailableToDonate, setFilterisAvailableToDonate] =
+    useState('all');
+  const [searchByLocation, setSearchByLocation] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/auth/getalldonors?isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
+        );
+        let alldonors = await response.json();
+        alldonors = alldonors?.data?.data;
+        setDonorsList(alldonors);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, [filterBloodGroup, filterisAvailableToDonate, searchByLocation]);
+
   return (
     <div className="main-container">
-      <div className="grid grid-cols-12 md:grid-cols-12 gap-1 lg:mt-12">
+      <div className="grid grid-cols-12 gap-x-3 gap-y-6 mt-4 lg:mt-12 lg:p-6">
+        {/* filter by blood group */}
+        <div className="col-span-12 lg:col-span-4">
+          <span className="text-sm text-gray-400 font-semibold">
+            Filter donors by blood group
+          </span>
+          <br />
+          <select
+            className="lg:w-3/4 mt-1.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   focus:outline-none"
+            onChange={(e) => setFilterBloodGroup(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="A-positive">A-positive</option>
+            <option value="A-negative">A-negative</option>
+            <option value="B-positive">B-positive</option>
+            <option value="B-negative">B-negative</option>
+            <option value="AB-positive">AB-positive</option>
+            <option value="AB-negative">AB-negative</option>
+            <option value="O-positive">O-positive</option>
+            <option value="O-negative">O-negative</option>
+          </select>
+        </div>
+        {/* filter by availability */}
+        <div className="col-span-12 lg:col-span-4">
+          <span className="text-sm text-gray-400 font-semibold">
+            Filter donors by availability
+          </span>
+          <br />
+          <select
+            className="lg:w-3/4 mt-1.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   focus:outline-none"
+            onChange={(e) => setFilterisAvailableToDonate(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="true">Available</option>
+            <option value="false">Unavailable</option>
+          </select>
+        </div>
+        {/* search by location */}
+        <div className="col-span-12 lg:col-span-4">
+          <span className="text-sm text-gray-400 font-semibold">
+            Search donors by location
+          </span>
+          <br />
+          <input
+            type="text"
+            className="lg:w-3/4 mt-1.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   focus:outline-none"
+            placeholder="Search by location"
+            onChange={(e) => setSearchByLocation(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* if no donor found */}
+      {donorsList.length === 0 && (
+        <div className="flex items-center justify-center h-[300px]">
+          <h3 className="text-lg font-semibold text-red-600">No donor found</h3>
+        </div>
+      )}
+
+      {/* donor cards */}
+      <div className="grid grid-cols-12 md:grid-cols-12 gap-1 mt-6">
         {donorsList.map((donor: TDonor) => {
           const donorProfileImage = donor?.profileImage || demodonor;
           return (

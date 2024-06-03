@@ -2,11 +2,6 @@ import Link from 'next/link';
 import OurDonorsClient from './OurDonors.client';
 
 const OurDonors = async () => {
-  const allDonors = await fetch(`${process.env.SERVER_URL}/auth/getalldonors`, {
-    cache: 'no-cache',
-  });
-  const donors = await allDonors.json();
-
   return (
     <div className="bg-gray-100 py-14 lg:py-20">
       <div className="main-container">
@@ -20,7 +15,7 @@ const OurDonors = async () => {
         </p>
       </div>
       <div>
-        <OurDonorsClient donors={donors} />
+        <OurDonorsClient />
       </div>
       <div className="flex justify-center items-center">
         <Link href="/donors">
