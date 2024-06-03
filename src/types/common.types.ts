@@ -32,3 +32,9 @@ export type TDonor = {
     mobile?: string;
   };
 };
+
+export type TSuccessStory = {
+  id: number;
+  reviewer: string;
+  review: string;
+};

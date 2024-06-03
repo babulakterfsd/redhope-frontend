@@ -7,6 +7,10 @@ body {
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -51,5 +55,37 @@ body {
 @media (min-width: 1400px) {
   .main-container {
     max-width: 1320px !important;
+  }
+}
+
+/* swiper js */
+.swiper-wrapper {
+  position: relative !important;
+  padding-bottom: 50px !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+.swiper-pagination-bullet {
+  margin: 0px 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fa8232 !important;
+  transform: scale(1) !important;
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-pagination {
+    position: absolute !important;
+    
+  }
+}
+
+@media (max-width: 1024px) {
+  .swipercontainer {
+    width: 100vw;
   }
 }
