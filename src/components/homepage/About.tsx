@@ -5,7 +5,7 @@ import homeabout from '../../../public/homeabout.jpg';
 const About = () => {
   return (
     <div className="main-container py-14 lg:py-20">
-      <h3 className="text-center text-3xl lg:text-4xl font-bold">
+      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
         About Redhope
       </h3>
       <p className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0">
