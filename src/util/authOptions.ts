@@ -25,7 +25,6 @@ export const authOptions = {
             password,
           });
           if (res?.data?.data?.user) {
-            console.log('res.data.user', res.data.user);
             return { ...res?.data?.data?.user, token: res?.data?.data?.token };
           } else {
             return null;
