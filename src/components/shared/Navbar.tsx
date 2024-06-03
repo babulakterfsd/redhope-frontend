@@ -74,7 +74,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-300 hover:transition-all duration-300 ease-in-out"
+                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-400 hover:transition-all duration-300 ease-in-out"
                   onClick={toggleMenu}
                   aria-current="page"
                 >
@@ -84,7 +84,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/about"
-                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-300 hover:transition-all duration-300 ease-in-out"
+                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-400 hover:transition-all duration-300 ease-in-out"
                   onClick={toggleMenu}
                 >
                   About Us
@@ -93,7 +93,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/donors"
-                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-300 hover:transition-all duration-300 ease-in-out"
+                  className="block py-2 px-3 text-black rounded md:bg-transparent md:p-0 hover:text-red-400 hover:transition-all duration-300 ease-in-out"
                   onClick={toggleMenu}
                 >
                   Our Donors
@@ -103,14 +103,14 @@ const Navbar = () => {
                 {loggedInUser?.email ? (
                   <Link
                     href="/dashboard"
-                    className="mt-8 md:mt-0 md:ml-24 bg-red-300 rounded-md px-8 py-2 text-white hover:bg-red-400 transition-colors duration-300 ease-in-out"
+                    className="mt-8 md:mt-0 md:ml-24 bg-red-400 rounded-md px-8 py-2.5 text-white hover:bg-red-300 transition-colors duration-300 ease-in-out"
                   >
                     My Profile
                   </Link>
                 ) : (
                   <Link
                     href="/login"
-                    className="mt-8 md:mt-0 md:ml-24 bg-red-300 rounded-md px-8 py-2 text-white hover:bg-red-400 transition-colors duration-300 ease-in-out"
+                    className="mt-8 md:mt-0 md:ml-24 bg-red-400 rounded-md px-8 py-2.5 text-white hover:bg-red-300 transition-colors duration-300 ease-in-out"
                     onClick={toggleMenu}
                   >
                     Log In

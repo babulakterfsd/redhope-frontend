@@ -101,7 +101,7 @@ const Contact = () => {
             <button
               type="submit"
               aria-label="send message"
-              className="lg:mt-1 bg-red-300 rounded-full px-2 py-3 w-full lg:w-56 font-semibold text-white"
+              className="lg:mt-1 bg-red-400 hover:bg-red-300 transition-all duration-300 rounded px-2 py-3 w-full lg:w-48 font-semibold text-white"
             >
               Send message
             </button>

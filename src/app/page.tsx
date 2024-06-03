@@ -1,9 +1,10 @@
+import Banner from '@/components/homepage/Banner';
 import CommonLayout from '@/components/layout/CommonLayout';
 
 const page = () => {
   return (
     <CommonLayout>
-      <h3>This is homepage</h3>
+      <Banner />
     </CommonLayout>
   );
 };
