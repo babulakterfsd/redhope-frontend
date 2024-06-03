@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import demodonor from '../../../public/demodonor.png';
 
-const DonorListPage = () => {
-  const [donorsList, setDonorsList] = useState([]);
+const DonorListPage = ({ donors }: any) => {
+  const [donorsList, setDonorsList] = useState(donors);
   const [filterBloodGroup, setFilterBloodGroup] = useState('all');
   const [filterisAvailableToDonate, setFilterisAvailableToDonate] =
     useState('all');
