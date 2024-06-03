@@ -20,13 +20,10 @@ export const authOptions = {
       async authorize(credentials, req) {
         try {
           const { email, password } = credentials as TCredentials;
-          const res = await axios.post(
-            `https://redhope-backend.vercel.app/api/auth/login`,
-            {
-              email,
-              password,
-            }
-          );
+          const res = await axios.post(`http://localhost:5000/api/auth/login`, {
+            email,
+            password,
+          });
           if (res?.data?.data?.user) {
             console.log('res.data.user', res.data.user);
             return { ...res?.data?.data?.user, token: res?.data?.data?.token };

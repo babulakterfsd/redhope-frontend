@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import demodonor from '../../../public/demodonor.png';
 
-const OurDonorsClient = () => {
+const DonorListPage = () => {
   const [donorsList, setDonorsList] = useState([]);
   const [filterBloodGroup, setFilterBloodGroup] = useState('all');
   const [filterisAvailableToDonate, setFilterisAvailableToDonate] =
@@ -29,7 +29,15 @@ const OurDonorsClient = () => {
   }, [filterBloodGroup, filterisAvailableToDonate, searchByLocation]);
 
   return (
-    <div className="main-container">
+    <div className="main-container py-14 lg:py-20">
+      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
+        Our Registered Donors
+      </h3>
+      <p className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0">
+        Our donors are the heart of our organization. They are the ones who make
+        it possible for us to save lives and make a difference in the world. We
+        are grateful for their generosity and dedication.
+      </p>
       <div className="grid grid-cols-12 gap-x-3 gap-y-6 mt-4 lg:mt-12 lg:p-6">
         {/* filter by blood group */}
         <div className="col-span-12 lg:col-span-4">
@@ -162,4 +170,4 @@ const OurDonorsClient = () => {
   );
 };
 
-export default OurDonorsClient;
+export default DonorListPage;
