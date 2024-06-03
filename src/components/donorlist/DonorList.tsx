@@ -4,6 +4,7 @@ import { TDonor } from '@/types/common.types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import demodonor from '../../../public/demodonor.png';
 
 const DonorListPage = () => {
@@ -12,21 +13,49 @@ const DonorListPage = () => {
   const [filterisAvailableToDonate, setFilterisAvailableToDonate] =
     useState('all');
   const [searchByLocation, setSearchByLocation] = useState('');
+  const [page, setPage] = useState<string>('1');
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 8;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/auth/getalldonors?isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
+          `http://localhost:5000/api/auth/getalldonors?page=${page}&limit=${limit}&isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
         );
         let alldonors = await response.json();
+        let itemsInTotal = alldonors?.data?.meta?.total;
+        let pagesInTotal = Math.ceil(Number(itemsInTotal) / Number(limit));
         alldonors = alldonors?.data?.data?.slice(0, 10);
         setDonorsList(alldonors);
+        setTotalItems(itemsInTotal);
+        setTotalPages(pagesInTotal);
       } catch (error) {}
     };
 
     fetchData();
-  }, [filterBloodGroup, filterisAvailableToDonate, searchByLocation]);
+  }, [
+    page,
+    limit,
+    filterBloodGroup,
+    filterisAvailableToDonate,
+    searchByLocation,
+  ]);
+
+  const handlePageChange = (page: number) => {
+    setPage(page.toString());
+  };
+
+  const handleBloodGroupChange = (bloodGroup: string) => {
+    setFilterBloodGroup(bloodGroup);
+    setPage('1');
+  };
+
+  const handleAvailabilityChange = (isAvailableToDonate: string) => {
+    setFilterisAvailableToDonate(isAvailableToDonate);
+    setPage('1');
+  };
 
   return (
     <div className="main-container py-14 lg:py-20">
@@ -47,7 +76,7 @@ const DonorListPage = () => {
           <br />
           <select
             className="lg:w-3/4 mt-1.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   focus:outline-none"
-            onChange={(e) => setFilterBloodGroup(e.target.value)}
+            onChange={(e) => handleBloodGroupChange(e.target.value)}
           >
             <option value="all">All</option>
             <option value="A-positive">A-positive</option>
@@ -68,7 +97,7 @@ const DonorListPage = () => {
           <br />
           <select
             className="lg:w-3/4 mt-1.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   focus:outline-none"
-            onChange={(e) => setFilterisAvailableToDonate(e.target.value)}
+            onChange={(e) => handleAvailabilityChange(e.target.value)}
           >
             <option value="all">All</option>
             <option value="true">Available</option>
@@ -104,7 +133,7 @@ const DonorListPage = () => {
           return (
             <div
               key={donor._id}
-              className="col-span-12 md:col-span-4 lg:col-span-3 p-3 lg:p-6 rounded"
+              className="col-span-12 md:col-span-6 lg:col-span-3 p-3 lg:p-6 rounded"
             >
               <div className="w-full max-w-sm bg-white rounded-lg shadow pt-5 h-[300px]">
                 <div className="flex flex-col items-center pb-5">
@@ -166,6 +195,52 @@ const DonorListPage = () => {
           );
         })}
       </div>
+      {/* pagination */}
+      {donorsList?.length === 0 ? (
+        <div></div>
+      ) : (
+        <div
+          className={`flex justify-center items-center my-5 space-x-2 lg:space-x-4 ${
+            donorsList?.length < 5 ? 'mt-[323px]' : 'mt-6 lg:mt-12'
+          }`}
+        >
+          <button
+            className=" px-1.5 bg-red-300 rounded-full text-gray-700 h-8 w-8 hover:bg-orange-400 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+            onClick={() => handlePageChange(Number(page) - 1)}
+            disabled={Number(page) === 1}
+          >
+            <FaChevronLeft className="text-white" />
+          </button>
+          {[...Array(Math.min(totalPages, 5)).keys()].map((index) => {
+            const pageNumber = Number(page) - 2 + index;
+            // Check if pageNumber is within valid range and greater than 0
+            if (pageNumber > 0 && pageNumber <= totalPages) {
+              return (
+                <button
+                  key={pageNumber}
+                  className={`mx-2 px-2 bg-gray-300 text-gray-700 rounded-full w-8 h-8 hover:bg-gray-400 transition-all duration-300 disabled:cursor-not-allowed disabled:hover:bg-gray-200 ${
+                    Number(page) === pageNumber
+                      ? 'font-bold text-white bg-red-300'
+                      : ''
+                  }`}
+                  onClick={() => handlePageChange(pageNumber)}
+                  disabled={Number(page) === pageNumber}
+                >
+                  {pageNumber}
+                </button>
+              );
+            }
+            return null; // Render nothing for invalid pageNumber
+          })}
+          <button
+            className="px-2 w-8 h-8 bg-red-300 text-white rounded-full hover:bg-red-400 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
+            onClick={() => handlePageChange(Number(page) + 1)}
+            disabled={Number(page) === totalPages}
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
