@@ -1,6 +1,7 @@
 'use client';
 import NotFound from '@/app/not-found';
 import { TDonor } from '@/types/common.types';
+import { useSession } from 'next-auth/react';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -9,6 +10,8 @@ const RequestBlood = () => {
   const [donor, setDonor] = useState({} as TDonor);
   const { id } = useParams();
   const username = id;
+  const session = useSession();
+  const requester = session?.data?.user;
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,7 +30,7 @@ const RequestBlood = () => {
     fetchData();
   }, [id]);
 
-  if (!isLoading && !donor) {
+  if (!isLoading && !donor && !session?.data?.user) {
     return <NotFound />;
   }
 
