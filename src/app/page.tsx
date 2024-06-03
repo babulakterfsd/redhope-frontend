@@ -1,5 +1,6 @@
 import About from '@/components/homepage/About';
 import Banner from '@/components/homepage/Banner';
+import BenifitsOfDonation from '@/components/homepage/BenifitsOfDonation';
 import DonorAreas from '@/components/homepage/DonorAreas';
 import OurDonors from '@/components/homepage/OurDonors';
 import SuccessStories from '@/components/homepage/SuccessStories';
@@ -13,6 +14,7 @@ const page = () => {
       <OurDonors />
       <DonorAreas />
       <SuccessStories />
+      <BenifitsOfDonation />
     </CommonLayout>
   );
 };
