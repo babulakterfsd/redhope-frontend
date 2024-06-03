@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className={`h-screen ${Styles.bannerbg}`}>
       <div className="main-container">
-        <h1 className="text-red-600 text-3xl md:text-3xl lg:text-6xl font-bold pt-20 lg:pt-40 ">
+        <h1 className="text-red-600 text-3xl lg:text-6xl font-bold pt-20 lg:pt-40 ">
           One Drop Of Your Blood <br className="hidden lg:block" /> Can Save A
           Life
         </h1>
