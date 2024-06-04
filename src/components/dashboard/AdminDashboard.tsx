@@ -238,15 +238,15 @@ const AdminDashboard = ({ loggedInUser }: any) => {
         </div>
         {/* dashboard content */}
         {activePath === 'dashboard' ? (
-          <Profile />
+          <Profile loggedInUser={loggedInUser} />
         ) : activePath === 'myrequests' ? (
-          <MyRequests />
+          <MyRequests loggedInUser={loggedInUser} />
         ) : activePath === 'requeststome' ? (
-          <RequestsToMe />
+          <RequestsToMe loggedInUser={loggedInUser} />
         ) : activePath === 'manageusers' ? (
-          <ManageUsers />
+          <ManageUsers loggedInUser={loggedInUser} />
         ) : (
-          <Profile />
+          <Profile loggedInUser={loggedInUser} />
         )}
       </div>
     </div>
