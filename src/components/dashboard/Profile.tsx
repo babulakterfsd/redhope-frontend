@@ -600,7 +600,7 @@ const Profile = ({ loggedInUser }: any) => {
                         >
                           {updateProfilePhotoOngoing
                             ? 'Updating Profile'
-                            : 'Update Profile'}
+                            : 'Update Profile Image'}
                         </button>
                       </form>
                     </div>
