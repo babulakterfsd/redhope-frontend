@@ -32,7 +32,7 @@ const RequestBlood = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://redhope-backend.vercel.app/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
+          `http://localhost:5000/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
         );
         const data = await response.json();
         const loggedInUser = data?.data;
@@ -50,7 +50,7 @@ const RequestBlood = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://redhope-backend.vercel.app/api/auth/getalldonors/${username}`
+          `http://localhost:5000/api/auth/getalldonors/${username}`
         );
         const data = await response.json();
         const donor = data?.data;
@@ -127,7 +127,7 @@ const RequestBlood = () => {
     };
 
     const response = await fetch(
-      'https://redhope-backend.vercel.app/api/bloodrequests/create-blood-request',
+      'http://localhost:5000/api/bloodrequests/create-blood-request',
       {
         method: 'POST',
         headers: {

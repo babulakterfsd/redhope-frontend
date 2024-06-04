@@ -7,7 +7,7 @@ const page = async () => {
   const session = await getServerSession();
   const loggedInUserEmail = session?.user?.email;
   const loggedInUserData = await fetch(
-    `https://redhope-backend.vercel.app/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
+    `http://localhost:5000/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
   );
   const currentUser = await loggedInUserData.json();
   const loggedInUser = currentUser?.data;

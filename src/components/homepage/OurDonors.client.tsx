@@ -17,7 +17,7 @@ const OurDonorsClient = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://redhope-backend.vercel.app/api/auth/getalldonors?isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
+          `http://localhost:5000/api/auth/getalldonors?isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
         );
         let alldonors = await response.json();
         alldonors = alldonors?.data?.data?.slice(0, 10);

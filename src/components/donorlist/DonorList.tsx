@@ -22,7 +22,7 @@ const DonorListPage = ({ donors }: any) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://redhope-backend.vercel.app/api/auth/getalldonors?page=${page}&limit=${limit}&isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
+          `http://localhost:5000/api/auth/getalldonors?page=${page}&limit=${limit}&isAvailableToDonate=${filterisAvailableToDonate}&bloodGroup=${filterBloodGroup}&location=${searchByLocation}`
         );
         let alldonors = await response.json();
         let itemsInTotal = alldonors?.data?.meta?.total;
