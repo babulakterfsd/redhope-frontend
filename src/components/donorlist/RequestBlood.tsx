@@ -1,6 +1,6 @@
 'use client';
 import NotFound from '@/app/not-found';
-import { TCustomSession, TDonor } from '@/types/common.types';
+import { TDonor } from '@/types/common.types';
 import { useSession } from 'next-auth/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -10,13 +10,12 @@ const RequestBlood = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isBloodRequestLoading, setIsBloodRequestLoading] = useState(false);
   const [donor, setDonor] = useState({} as TDonor);
+  const [requester, setRequester] = useState({} as TDonor);
   const { id } = useParams();
   const router = useRouter();
   const username = id;
   const session = useSession();
-  const requester = session?.data?.user as TDonor;
-  let customSession = session?.data?.user as TCustomSession;
-  const loggedInUsersToken = customSession?.token as string;
+  const loggedInUserEmail = session?.data?.user?.email;
   const [requesterMobile, setRequesterMobile] = useState(
     requester?.location?.mobile || ''
   );
@@ -27,6 +26,25 @@ const RequestBlood = () => {
   const [agreeToTermsAndConditions, setAgreeToTermsAndConditions] =
     useState(false);
 
+  // get requester details
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
+        );
+        const data = await response.json();
+        const loggedInUser = data?.data;
+        setRequester(loggedInUser);
+        setIsLoading(false);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, [id]);
+
+  // get donor details
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
@@ -114,7 +132,6 @@ const RequestBlood = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${loggedInUsersToken}`,
         },
         body: JSON.stringify(requestData),
       }
