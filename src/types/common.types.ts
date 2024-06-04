@@ -38,3 +38,10 @@ export type TSuccessStory = {
   reviewer: string;
   review: string;
 };
+
+export type TCustomSession = {
+  name: string;
+  email: string;
+  image: string;
+  token: string;
+};

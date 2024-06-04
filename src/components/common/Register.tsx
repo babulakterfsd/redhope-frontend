@@ -92,7 +92,7 @@ const Register = () => {
                 duration: 1500,
               });
             } else {
-              router.push('/dashboard');
+              router.push('/');
               setIsSubmitting(false);
             }
           });

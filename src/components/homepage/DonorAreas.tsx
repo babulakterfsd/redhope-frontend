@@ -44,7 +44,7 @@ const DonorAreas = async () => {
             where we have donors:
           </p>
           <div className="mt-4 grid grid-cols-12 gap-x-2 lg:gap-x-10 gap-y-4">
-            {uniqueLocations?.slice(0, 12).map((location: unknown) => {
+            {uniqueLocations?.slice(0, 9).map((location: unknown) => {
               return (
                 <div
                   key={Math.random() * 999}

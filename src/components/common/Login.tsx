@@ -41,7 +41,10 @@ const Login = () => {
               duration: 1500,
             });
           } else {
-            router.push(callbackUrl || '/dashboard');
+            router.push('/');
+            if (window !== undefined) {
+              window.location.reload();
+            }
             toast.success('Logged in successfully', {
               position: 'top-right',
               icon: '🚀',
