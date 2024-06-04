@@ -1,11 +1,24 @@
-import Logout from '@/components/dashboard/Logout';
+import AdminDashboard from '@/components/dashboard/AdminDashboard';
+import DonorDashboard from '@/components/dashboard/DonorDashboard';
 import DashboardLayout from '@/components/layout/DashboardLayout';
+import { getServerSession } from 'next-auth';
 
-const page = () => {
+const page = async () => {
+  const session = await getServerSession();
+  const loggedInUserEmail = session?.user?.email;
+  const loggedInUserData = await fetch(
+    `http://localhost:5000/api/auth/getalldonorsbyemail/${loggedInUserEmail}`
+  );
+  const currentUser = await loggedInUserData.json();
+  const loggedInUser = currentUser?.data;
+
   return (
     <DashboardLayout>
-      <h3>This is dashboard</h3>
-      <Logout />
+      {loggedInUser?.role === 'admin' ? (
+        <AdminDashboard loggedInUser={loggedInUser} />
+      ) : (
+        <DonorDashboard loggedInUser={loggedInUser} />
+      )}
     </DashboardLayout>
   );
 };

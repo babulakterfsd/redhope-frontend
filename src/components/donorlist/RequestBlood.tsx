@@ -238,7 +238,7 @@ const RequestBlood = () => {
                 name="rmobile"
                 id="rmobile"
                 className="text-sm font-semibold text-black rounded-lg block w-full p-2.5 bg-gray-50 border-gray-600 focus:outline-none"
-                placeholder={requester?.location?.mobile || 'e.g. 01740020464'}
+                placeholder={requesterMobile || 'e.g. 01740020464'}
                 required
                 value={requesterMobile}
                 onChange={(e) => setRequesterMobile(e.target.value)}
