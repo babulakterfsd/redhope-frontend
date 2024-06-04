@@ -91,7 +91,7 @@ const Profile = ({ loggedInUser }: any) => {
         const imgSecureUrl =
           (data?.secure_url as string) || loggedInUser?.profileImage;
         const response = await fetch(
-          'http://localhost:5000/api/auth/update-profile',
+          'https://redhope-backend.vercel.app/api/auth/update-profile',
           {
             method: 'PUT',
             headers: {
@@ -151,7 +151,7 @@ const Profile = ({ loggedInUser }: any) => {
       return;
     } else {
       const response = await fetch(
-        'http://localhost:5000/api/auth/update-profile',
+        'https://redhope-backend.vercel.app/api/auth/update-profile',
         {
           method: 'PUT',
           headers: {
@@ -230,7 +230,7 @@ const Profile = ({ loggedInUser }: any) => {
       return;
     } else {
       const response = await fetch(
-        'http://localhost:5000/api/auth/change-password',
+        'https://redhope-backend.vercel.app/api/auth/change-password',
         {
           method: 'POST',
           headers: {
