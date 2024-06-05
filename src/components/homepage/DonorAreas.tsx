@@ -4,9 +4,12 @@ import Link from 'next/link';
 import coverageImage from '../../../public/coverage.png';
 
 const DonorAreas = async () => {
-  const alldonors = await fetch('http://localhost:5000/api/auth/getalldonors', {
-    cache: 'no-cache',
-  });
+  const alldonors = await fetch(
+    'https://redhope-backend.vercel.app/api/auth/getalldonors',
+    {
+      cache: 'no-cache',
+    }
+  );
   const donors = await alldonors.json();
   const donorsList = donors?.data?.data;
 

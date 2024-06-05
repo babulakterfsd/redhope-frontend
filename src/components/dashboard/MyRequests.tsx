@@ -19,7 +19,7 @@ const MyRequests = ({ loggedInUser }: any) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/bloodrequests/requests-made-by-me?page=${page}&limit=${limit}&requesterEmail=${loggedInUser?.email}`
+          `https://redhope-backend.vercel.app/api/bloodrequests/requests-made-by-me?page=${page}&limit=${limit}&requesterEmail=${loggedInUser?.email}`
         );
         const data = await response.json();
         const myrequests = data?.data;

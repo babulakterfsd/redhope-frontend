@@ -19,7 +19,7 @@ const ManageUsers = ({ loggedInUser }: any) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/auth/getallusers?page=${page}&limit=${limit}`
+          `https://redhope-backend.vercel.app/api/auth/getallusers?page=${page}&limit=${limit}`
         );
         const data = await response.json();
         const myrequests = data?.data;
@@ -36,7 +36,7 @@ const ManageUsers = ({ loggedInUser }: any) => {
   // update user role
   const updateUserRole = async (userEmail: string, userRole: string) => {
     const response = await fetch(
-      'http://localhost:5000/api/auth/change-user-status-or-role',
+      'https://redhope-backend.vercel.app/api/auth/change-user-status-or-role',
       {
         method: 'POST',
         headers: {
@@ -59,7 +59,7 @@ const ManageUsers = ({ loggedInUser }: any) => {
         icon: ' ✔️',
       });
       const againResponse = await fetch(
-        `http://localhost:5000/api/auth/getallusers?page=${page}&limit=${limit}`
+        `https://redhope-backend.vercel.app/api/auth/getallusers?page=${page}&limit=${limit}`
       );
       const againData = await againResponse.json();
       const againMyrequests = againData?.data;
@@ -76,7 +76,7 @@ const ManageUsers = ({ loggedInUser }: any) => {
   // update user status
   const updateUserStatus = async (userEmail: string, activeStatus: string) => {
     const response = await fetch(
-      'http://localhost:5000/api/auth/change-user-status-or-role',
+      'https://redhope-backend.vercel.app/api/auth/change-user-status-or-role',
       {
         method: 'POST',
         headers: {
@@ -99,7 +99,7 @@ const ManageUsers = ({ loggedInUser }: any) => {
         icon: ' ✔️',
       });
       const againResponse = await fetch(
-        `http://localhost:5000/api/auth/getallusers?page=${page}&limit=${limit}`
+        `https://redhope-backend.vercel.app/api/auth/getallusers?page=${page}&limit=${limit}`
       );
       const againData = await againResponse.json();
       const againMyrequests = againData?.data;

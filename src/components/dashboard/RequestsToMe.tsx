@@ -22,7 +22,7 @@ const RequestsToMe = ({ loggedInUser }: any) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/bloodrequests/requests-made-to-me?page=${page}&limit=${limit}&donorEmail=${loggedInUser?.email}`
+          `https://redhope-backend.vercel.app/api/bloodrequests/requests-made-to-me?page=${page}&limit=${limit}&donorEmail=${loggedInUser?.email}`
         );
         const data = await response.json();
         const requestsToMe = data?.data;
@@ -42,7 +42,7 @@ const RequestsToMe = ({ loggedInUser }: any) => {
     status: string
   ) => {
     const response = await fetch(
-      'http://localhost:5000/api/bloodrequests/update-blood-request-status',
+      'https://redhope-backend.vercel.app/api/bloodrequests/update-blood-request-status',
       {
         method: 'PUT',
         headers: {
@@ -62,7 +62,7 @@ const RequestsToMe = ({ loggedInUser }: any) => {
         icon: '👏',
       });
       const againResponse = await fetch(
-        `http://localhost:5000/api/bloodrequests/requests-made-to-me?page=${page}&limit=${limit}&donorEmail=${loggedInUser?.email}`
+        `https://redhope-backend.vercel.app/api/bloodrequests/requests-made-to-me?page=${page}&limit=${limit}&donorEmail=${loggedInUser?.email}`
       );
       const againData = await againResponse.json();
       const againRequestsToMe = againData?.data;
