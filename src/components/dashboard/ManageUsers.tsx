@@ -2,6 +2,7 @@
 
 import { TDonor } from '@/types/common.types';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 const ManageUsers = ({ loggedInUser }: any) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,12 +33,84 @@ const ManageUsers = ({ loggedInUser }: any) => {
 
   const totalPages = Math.ceil(Number(totalItems) / Number(limit));
 
-  const updateUserRole = async (id: string, role: string) => {
-    console.log(id, role);
+  // update user role
+  const updateUserRole = async (userEmail: string, userRole: string) => {
+    const response = await fetch(
+      'http://localhost:5000/api/auth/change-user-status-or-role',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          adminEmail: loggedInUser?.email,
+          userEmail: userEmail,
+          userRole: userRole === 'admin' ? 'donor' : 'admin',
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (data?.statusCode === 200) {
+      toast.success(data?.message, {
+        position: 'top-right',
+        duration: 1500,
+        icon: ' ✔️',
+      });
+      const againResponse = await fetch(
+        `http://localhost:5000/api/auth/getallusers?page=${page}&limit=${limit}`
+      );
+      const againData = await againResponse.json();
+      const againMyrequests = againData?.data;
+      setAllUsers(againMyrequests?.data);
+    } else {
+      toast.error(data?.message, {
+        position: 'top-right',
+        duration: 1500,
+        icon: ' ❌',
+      });
+    }
   };
 
-  const updateUserStatus = async (id: string, status: boolean) => {
-    console.log(id, status);
+  // update user status
+  const updateUserStatus = async (userEmail: string, activeStatus: string) => {
+    const response = await fetch(
+      'http://localhost:5000/api/auth/change-user-status-or-role',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          adminEmail: loggedInUser?.email,
+          userEmail: userEmail,
+          activeStatus: activeStatus === 'true' ? false : true,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (data?.statusCode === 200) {
+      toast.success(data?.message, {
+        position: 'top-right',
+        duration: 1500,
+        icon: ' ✔️',
+      });
+      const againResponse = await fetch(
+        `http://localhost:5000/api/auth/getallusers?page=${page}&limit=${limit}`
+      );
+      const againData = await againResponse.json();
+      const againMyrequests = againData?.data;
+      setAllUsers(againMyrequests?.data);
+    } else {
+      toast.error(data?.message, {
+        position: 'top-right',
+        duration: 1500,
+        icon: ' ❌',
+      });
+    }
   };
 
   return (
@@ -113,7 +186,11 @@ const ManageUsers = ({ loggedInUser }: any) => {
                             <button
                               className="text-green-400 font-semibold"
                               onClick={() =>
-                                updateUserRole(user?._id, user?.role)
+                                updateUserRole(
+                                  user?.email,
+
+                                  user?.role
+                                )
                               }
                             >
                               <span>
@@ -126,8 +203,8 @@ const ManageUsers = ({ loggedInUser }: any) => {
                               className="text-red-400 font-semibold"
                               onClick={() =>
                                 updateUserStatus(
-                                  user?._id,
-                                  user?.isAccountActive
+                                  user?.email,
+                                  user?.isAccountActive.toString()
                                 )
                               }
                             >
