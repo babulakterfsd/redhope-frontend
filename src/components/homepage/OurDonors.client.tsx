@@ -29,7 +29,11 @@ const OurDonorsClient = () => {
   }, [filterBloodGroup, filterisAvailableToDonate, searchByLocation]);
 
   return (
-    <div className="main-container">
+    <div
+      className="main-container"
+      data-aos="fade-down"
+      data-aos-duration="1500"
+    >
       <div className="grid grid-cols-12 gap-x-3 gap-y-6 mt-4 lg:mt-12 lg:p-6">
         {/* filter by blood group */}
         <div className="col-span-12 lg:col-span-4">
@@ -97,6 +101,8 @@ const OurDonorsClient = () => {
             <div
               key={donor._id}
               className="col-span-12 md:col-span-4 lg:col-span-3 p-3 lg:p-6 rounded"
+              data-aos="fade-down"
+              data-aos-duration="1500"
             >
               <div className="w-full max-w-sm bg-white rounded-lg shadow pt-5 h-[300px]">
                 <div className="flex flex-col items-center pb-5">

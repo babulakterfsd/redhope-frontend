@@ -52,10 +52,18 @@ const SuccessStories = () => {
 
   return (
     <div className="main-container py-14 lg:py-20 hidden lg:block">
-      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
+      <h3
+        className="text-center text-3xl lg:text-4xl font-bold uppercase"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         Our Success Stories
       </h3>
-      <p className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0">
+      <p
+        className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         We have saved many lives by the grace of almighty. We have a large
         network of donors who are ready to donate blood whenever and wherever
         needed. We have donors from all over the world. New donors are joining
@@ -63,7 +71,11 @@ const SuccessStories = () => {
         donors.
       </p>
       {/* carousel */}
-      <div className="swipercontainer main-container mt-8">
+      <div
+        className="swipercontainer main-container mt-8"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         <Swiper
           scrollbar
           navigation

@@ -46,7 +46,11 @@ const AboutPage = () => {
       <div className="md:pb-8 lg:pb-12">
         <div className="main-container">
           <div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6 gap-y-6 md:gap-y-0">
-            <div className="col-span-12 md:col-span-6">
+            <div
+              className="col-span-12 md:col-span-6"
+              data-aos="fade-down"
+              data-aos-duration="1500"
+            >
               <button className="bg-red-300 text-white py-2 px-4 lg:px-4 rounded-sm font-medium text-sm mt-8 md:mt-0 cursor-default">
                 Who We Are
               </button>
@@ -104,7 +108,11 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 md:col-span-6">
+            <div
+              className="col-span-12 md:col-span-6"
+              data-aos="fade-down"
+              data-aos-duration="1500"
+            >
               <Image
                 src={AboutImg}
                 alt="About Us"
@@ -115,7 +123,11 @@ const AboutPage = () => {
         </div>
       </div>
       {/*Team Member */}
-      <div className="main-container lg:mt-16">
+      <div
+        className="main-container lg:mt-16"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         <h3 className="text-black font-semibold text-2xl lg:text-3xl mt-5 md:text-center">
           Team Members
         </h3>
@@ -161,7 +173,11 @@ const AboutPage = () => {
         </div>
       </div>
       {/* Contact Information */}
-      <div className="bg-gray-100 lg:mt-24">
+      <div
+        className="bg-gray-100 lg:mt-24"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         <div className="main-container py-10 lg:py-16">
           <h3 className="text-black font-semibold text-2xl lg:text-3xl mt-5 md:text-center">
             Contact Information

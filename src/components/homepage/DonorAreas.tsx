@@ -27,15 +27,27 @@ const DonorAreas = async () => {
 
   return (
     <div className="main-container py-14 lg:py-20">
-      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
+      <h3
+        className="text-center text-3xl lg:text-4xl font-bold uppercase"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         Our Coverage Areas
       </h3>
-      <p className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0">
+      <p
+        className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         Basically we cover the whole world. We have donors from all over the
         world. We have a large network of donors who are ready to donate blood
         whenever and wherever needed.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6 gap-y-6 md:gap-y-0 mt-8 lg:mt-16">
+      <div
+        className="grid grid-cols-1 md:grid-cols-12 md:gap-x-6 gap-y-6 md:gap-y-0 mt-8 lg:mt-16"
+        data-aos="fade-down"
+        data-aos-duration="2000"
+      >
         <div className="col-span-12 md:col-span-6">
           <p className="mt-2 lg:w-11/12">
             We have a large network of donors who are ready to donate blood

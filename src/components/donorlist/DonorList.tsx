@@ -59,15 +59,27 @@ const DonorListPage = ({ donors }: any) => {
 
   return (
     <div className="main-container py-14 lg:py-20">
-      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
+      <h3
+        className="text-center text-3xl lg:text-4xl font-bold uppercase"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         Our Registered Donors
       </h3>
-      <p className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0">
+      <p
+        className="text-center lg:w-6/12 mx-auto mt-3 md:mb-6 lg:mb-0"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         Our donors are the heart of our organization. They are the ones who make
         it possible for us to save lives and make a difference in the world. We
         are grateful for their generosity and dedication.
       </p>
-      <div className="grid grid-cols-12 gap-x-3 gap-y-6 mt-4 lg:mt-12 lg:p-6">
+      <div
+        className="grid grid-cols-12 gap-x-3 gap-y-6 mt-4 lg:mt-12 lg:p-6"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         {/* filter by blood group */}
         <div className="col-span-12 lg:col-span-4">
           <span className="text-sm text-gray-400 font-semibold">
@@ -134,6 +146,8 @@ const DonorListPage = ({ donors }: any) => {
             <div
               key={donor._id}
               className="col-span-12 md:col-span-6 lg:col-span-3 p-3 lg:p-6 rounded"
+              data-aos="fade-down"
+              data-aos-duration="1500"
             >
               <div className="w-full max-w-sm bg-white rounded-lg shadow pt-5 h-[300px]">
                 <div className="flex flex-col items-center pb-5">

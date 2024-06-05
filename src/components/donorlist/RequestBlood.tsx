@@ -158,14 +158,26 @@ const RequestBlood = () => {
 
   return (
     <div className="main-container py-14 lg:py-20">
-      <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
+      <h3
+        className="text-center text-3xl lg:text-4xl font-bold uppercase"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         {`Request Blood to ${donor?.name}`}
       </h3>
-      <p className="text-center lg:w-8/12 mx-auto mt-3 md:mb-6 lg:mb-0">
+      <p
+        className="text-center lg:w-8/12 mx-auto mt-3 md:mb-6 lg:mb-0"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         {`You can request blood to ${donor?.name} by calling him on his phone number or by sending him a message on his email address. But make sure that you are requesting blood for a valid reason. We will allow you to see his/her when he/she will accept your request.`}
       </p>
       {/* form */}
-      <div className="lg:w-9/12 shadow rounded lg:mx-auto py-8 lg:py-14 px-4 md:px-6 lg:px-12 mt-6 lg:mt-12">
+      <div
+        className="lg:w-9/12 shadow rounded lg:mx-auto py-8 lg:py-14 px-4 md:px-6 lg:px-12 mt-6 lg:mt-12"
+        data-aos="fade-down"
+        data-aos-duration="2000"
+      >
         <form onSubmit={handleBloodRequest}>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-8">
             {/* requester name */}

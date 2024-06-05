@@ -47,7 +47,11 @@ const DonorDetails = () => {
 
   return (
     <div className="main-container py-14 lg:py-20">
-      <div className="grid grid-cols-1 gap-y-6 border lg:w-8/12 lg:mx-auto border-gray-200 p-6">
+      <div
+        className="grid grid-cols-1 gap-y-6 border lg:w-8/12 lg:mx-auto border-gray-200 p-6"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         <div className="col-span-12">
           <Image
             src={donorImage}

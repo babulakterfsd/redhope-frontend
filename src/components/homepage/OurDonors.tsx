@@ -4,7 +4,11 @@ import OurDonorsClient from './OurDonors.client';
 const OurDonors = async () => {
   return (
     <div className="bg-gray-100 py-14 lg:py-20">
-      <div className="main-container">
+      <div
+        className="main-container"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
         <h3 className="text-center text-3xl lg:text-4xl font-bold uppercase">
           Our Donors
         </h3>
