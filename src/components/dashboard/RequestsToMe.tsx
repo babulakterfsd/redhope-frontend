@@ -34,8 +34,6 @@ const RequestsToMe = ({ loggedInUser }: any) => {
 
   const totalPages = Math.ceil(Number(totalItems) / Number(limit));
 
-  console.log(requestsToMe);
-
   return (
     <div>
       <h3 className="text-center mt-10 lg:mt-14 text-2xl">
