@@ -35,11 +35,14 @@ const Login = () => {
         }).then((res) => {
           if (res?.error) {
             setIsSubmitting(false);
-            toast.error('Please provide correct credentials.', {
-              position: 'top-right',
-              icon: '😢',
-              duration: 1500,
-            });
+            toast.error(
+              'Please provide correct credentials. Or contact admin !',
+              {
+                position: 'top-right',
+                icon: '😢',
+                duration: 1500,
+              }
+            );
           } else {
             router.push('/');
             if (window !== undefined) {
@@ -94,6 +97,15 @@ const Login = () => {
             </h3>
 
             <div className="shadow bg-gray-50 p-4 my-6 mx-auto rounded-md flex justify-center flex-col items-center">
+              <h5 className="text-red-300 underline">Demo Donor</h5>
+              <p className="text-sm">
+                Email: <span className="font-semibold">xpawal@gmail.com</span>
+              </p>
+              <p className="text-sm">
+                Password: <span className="font-semibold">xpawal123</span>
+              </p>
+            </div>
+            <div className="shadow bg-gray-50 p-4 my-6 mx-auto rounded-md flex justify-center flex-col items-center">
               <h5 className="text-red-300 underline">Demo Admin</h5>
               <p className="text-sm">
                 Email:{' '}
@@ -101,15 +113,6 @@ const Login = () => {
               </p>
               <p className="text-sm">
                 Password: <span className="font-semibold">babul123</span>
-              </p>
-            </div>
-            <div className="shadow bg-gray-50 p-4 my-6 mx-auto rounded-md flex justify-center flex-col items-center">
-              <h5 className="text-red-300 underline">Demo Donor</h5>
-              <p className="text-sm">
-                Email: <span className="font-semibold">xpawal@gmail.com</span>
-              </p>
-              <p className="text-sm">
-                Password: <span className="font-semibold">xpawal123</span>
               </p>
             </div>
 

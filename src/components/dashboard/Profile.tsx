@@ -322,18 +322,29 @@ const Profile = ({ loggedInUser }: any) => {
               <h3 className="text-sm mt-0.5">
                 {loggedInUser?.location?.mobile}
               </h3>
-              <div className="text-sm mt-4 text-center">
-                <span>{loggedInUser?.location?.address}</span>
-                {','}
-                <span>{loggedInUser?.location?.postalCode}</span> <br />
-                <span>
-                  {loggedInUser?.location?.city}
+              {loggedInUser?.location?.address &&
+              loggedInUser?.location?.city &&
+              loggedInUser?.location?.state &&
+              loggedInUser?.location?.country &&
+              loggedInUser?.location?.postalCode &&
+              loggedInUser?.location?.mobile ? (
+                <div className="text-sm mt-4 text-center">
+                  <span>{loggedInUser?.location?.address}</span>
                   {','}
-                  {loggedInUser?.location?.state}
-                  {','}
-                  {loggedInUser?.location?.country}
+                  <span>{loggedInUser?.location?.postalCode}</span> <br />
+                  <span>
+                    {loggedInUser?.location?.city}
+                    {','}
+                    {loggedInUser?.location?.state}
+                    {','}
+                    {loggedInUser?.location?.country}
+                  </span>
+                </div>
+              ) : (
+                <span className="mt-3 text-sm text-red-400">
+                  Update your profile details, please !
                 </span>
-              </div>
+              )}
             </>
           }
           <div
