@@ -5,13 +5,20 @@ import { useEffect, useState } from 'react';
 const MyRequests = ({ loggedInUser }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [myRequests, setMyRequests] = useState([]);
+  const [page, setPage] = useState<string>('1');
+  const limit = '10';
+  const totalPages = Math.ceil(Number(myRequests) / Number(limit));
+
+  const handlePageChange = (page: number) => {
+    setPage(page.toString());
+  };
 
   useEffect(() => {
     setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/bloodrequests/requests-made-by-me?requesterEmail=${loggedInUser?.email}`
+          `http://localhost:5000/api/bloodrequests/requests-made-by-me?page=${page}&limit=${limit}&requesterEmail=${loggedInUser?.email}`
         );
         const data = await response.json();
         const myrequests = data?.data;
@@ -22,6 +29,8 @@ const MyRequests = ({ loggedInUser }: any) => {
 
     fetchData();
   }, [loggedInUser?.email]);
+
+  console.log(myRequests);
 
   return (
     <div>
