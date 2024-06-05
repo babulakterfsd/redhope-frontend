@@ -2,6 +2,9 @@
 
 import { TBloodRequest } from '@/types/common.types';
 import { useEffect, useState } from 'react';
+import { HiOutlineXMark } from 'react-icons/hi2';
+import { IoCheckmark } from 'react-icons/io5';
+import { toast } from 'sonner';
 
 const RequestsToMe = ({ loggedInUser }: any) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +36,45 @@ const RequestsToMe = ({ loggedInUser }: any) => {
   }, [loggedInUser?.email]);
 
   const totalPages = Math.ceil(Number(totalItems) / Number(limit));
+
+  const updateRequestStatus = async (
+    bloodRequestId: string,
+    status: string
+  ) => {
+    const response = await fetch(
+      'http://localhost:5000/api/bloodrequests/update-blood-request-status',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bloodRequestId,
+          status,
+        }),
+      }
+    );
+    const data = await response.json();
+    if (data?.statusCode === 200) {
+      toast.success(data?.message, {
+        position: 'top-right',
+        duration: 2000,
+        icon: '👏',
+      });
+      const againResponse = await fetch(
+        `http://localhost:5000/api/bloodrequests/requests-made-to-me?page=${page}&limit=${limit}&donorEmail=${loggedInUser?.email}`
+      );
+      const againData = await againResponse.json();
+      const againRequestsToMe = againData?.data;
+      setRequestsToMe(againRequestsToMe);
+    } else {
+      toast.error(data?.message, {
+        position: 'top-right',
+        duration: 1500,
+        icon: ' ❌',
+      });
+    }
+  };
 
   return (
     <div>
@@ -74,6 +116,9 @@ const RequestsToMe = ({ loggedInUser }: any) => {
                     <th scope="col" className="px-6 py-3">
                       Request Status
                     </th>
+                    <th scope="col" className="px-6 py-3">
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,7 +144,8 @@ const RequestsToMe = ({ loggedInUser }: any) => {
                             </th>
                             <td
                               className={`px-6 py-4 ${
-                                request?.requestStatus === 'pending'
+                                request?.requestStatus === 'pending' ||
+                                request?.requestStatus === 'rejected'
                                   ? 'text-red-400'
                                   : ''
                               }`}
@@ -112,7 +158,8 @@ const RequestsToMe = ({ loggedInUser }: any) => {
                             </td>
                             <td
                               className={`px-6 py-4 ${
-                                request?.requestStatus === 'pending'
+                                request?.requestStatus === 'pending' ||
+                                request?.requestStatus === 'rejected'
                                   ? 'text-red-400'
                                   : ''
                               }`}
@@ -136,6 +183,26 @@ const RequestsToMe = ({ loggedInUser }: any) => {
                               }`}
                             >
                               {request?.requestStatus}
+                            </td>
+                            <td className="px-6 py-4 flex space-x-2 justify-center items-center mt-3 lg:mt-1">
+                              <button
+                                className="bg-green-400 py-0.5 px-3 text-center font-semibold rounded-full text-white flex justify-center items-center"
+                                onClick={() =>
+                                  updateRequestStatus(request?._id, 'accepted')
+                                }
+                              >
+                                <IoCheckmark className="font-bold mt-1" />
+                                <span>Accept</span>
+                              </button>
+                              <button
+                                className="bg-red-400 py-0.5 px-3 text-center font-semibold rounded-full text-white flex justify-center items-center"
+                                onClick={() =>
+                                  updateRequestStatus(request?._id, 'rejected')
+                                }
+                              >
+                                <HiOutlineXMark className="font-bold mt-1" />{' '}
+                                <span>Reject</span>
+                              </button>
                             </td>
                           </tr>
                         )
