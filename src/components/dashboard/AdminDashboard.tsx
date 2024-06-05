@@ -4,6 +4,8 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FcHome } from 'react-icons/fc';
+import { IoIosLogOut } from 'react-icons/io';
 import { IoFitnessOutline, IoHeartOutline } from 'react-icons/io5';
 import { LuUser2 } from 'react-icons/lu';
 import { RxCross2 } from 'react-icons/rx';
@@ -135,13 +137,13 @@ const AdminDashboard = ({ loggedInUser }: any) => {
             <li className="my-2">
               <button
                 onClick={() => handleActivePath('myrequests')}
-                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group`}
+                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group w-full`}
               >
                 <div
                   className="flex items-center space-x-2"
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
-                  <IoFitnessOutline className="text-xl" />
+                  <IoFitnessOutline className="text-xl font-bold text-amber-600" />
                   <span>My Requests</span>
                 </div>
               </button>
@@ -149,13 +151,13 @@ const AdminDashboard = ({ loggedInUser }: any) => {
             <li className="my-2">
               <button
                 onClick={() => handleActivePath('requeststome')}
-                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group`}
+                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group w-full`}
               >
                 <div
                   className="flex items-center space-x-2"
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
-                  <IoHeartOutline className="text-lg text-bluish" />
+                  <IoHeartOutline className="text-lg text-blue-600 font-bold" />
                   <span>Requests to Me</span>
                 </div>
               </button>
@@ -163,13 +165,13 @@ const AdminDashboard = ({ loggedInUser }: any) => {
             <li className="my-2">
               <button
                 onClick={() => handleActivePath('manageusers')}
-                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group `}
+                className={`flex items-center p-2 rounded-lg  hover:bg-red-400 hover:text-white group w-full`}
               >
                 <div
                   className="flex items-center space-x-2"
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
-                  <LuUser2 className="text-xl text-deep-yellow" />
+                  <LuUser2 className="text-xl text-yellow-600 font-bold" />
                   <span>Manage Users</span>
                 </div>
               </button>
@@ -185,7 +187,7 @@ const AdminDashboard = ({ loggedInUser }: any) => {
                     className="flex items-center space-x-2"
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                   >
-                    {/* <IoMdHome /> */}
+                    <FcHome className="text-green-400 font-bold text-xl" />
                     <span>Back To Home</span>
                   </div>
                 </Link>
@@ -196,10 +198,10 @@ const AdminDashboard = ({ loggedInUser }: any) => {
                   onClick={handleLogout}
                 >
                   <div
-                    className="flex items-center space-x-2"
+                    className="flex justify-start -ml-5 items-center space-x-2"
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                   >
-                    {/* <IoMdLogOut /> */}
+                    <IoIosLogOut className="text-white text-xl font-bold" />
                     <span>Logout</span>
                   </div>
                 </button>
