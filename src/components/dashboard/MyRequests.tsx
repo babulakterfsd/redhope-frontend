@@ -96,7 +96,8 @@ const MyRequests = ({ loggedInUser }: any) => {
                             </th>
                             <td
                               className={`px-6 py-4 ${
-                                request?.requestStatus === 'pending'
+                                request?.requestStatus === 'pending' ||
+                                request?.requestStatus === 'rejected'
                                   ? 'text-red-400'
                                   : ''
                               }`}
@@ -109,7 +110,8 @@ const MyRequests = ({ loggedInUser }: any) => {
                             </td>
                             <td
                               className={`px-6 py-4 ${
-                                request?.requestStatus === 'pending'
+                                request?.requestStatus === 'pending' ||
+                                request?.requestStatus === 'rejected'
                                   ? 'text-red-400'
                                   : ''
                               }`}

@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { RxCross2 } from 'react-icons/rx';
 import { toast } from 'sonner';
+import demoLoggedInUserImage from '../../../public/demodonor.png';
 
 const Profile = ({ loggedInUser }: any) => {
   const [showProfileUpdateModal, setShowProfileUpdateModal] =
@@ -288,6 +289,8 @@ const Profile = ({ loggedInUser }: any) => {
     }
   };
 
+  const profilePic = loggedInUser?.profileImage || demoLoggedInUserImage;
+
   return (
     <div>
       <h3 className="text-center mt-10 lg:mt-14 text-2xl">
@@ -306,7 +309,7 @@ const Profile = ({ loggedInUser }: any) => {
                 {loggedInUser?.role}
               </div>
               <Image
-                src={loggedInUser?.profileImage}
+                src={profilePic}
                 alt={loggedInUser?.name}
                 width={80}
                 height={80}
