@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 const MyRequests = ({ loggedInUser }: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [myRequests, setMyRequests] = useState({} as any);
+  const [totalItems, setTotalItems] = useState<number>(0);
   const [page, setPage] = useState<string>('1');
   const limit = '10';
-  const totalPages = Math.ceil(Number(myRequests) / Number(limit));
 
   const handlePageChange = (page: number) => {
     setPage(page.toString());
@@ -24,6 +24,7 @@ const MyRequests = ({ loggedInUser }: any) => {
         const data = await response.json();
         const myrequests = data?.data;
         setMyRequests(myrequests);
+        setTotalItems(myrequests?.meta?.total);
         setIsLoading(false);
       } catch (error) {}
     };
@@ -31,7 +32,7 @@ const MyRequests = ({ loggedInUser }: any) => {
     fetchData();
   }, [loggedInUser?.email]);
 
-  console.log(myRequests);
+  const totalPages = Math.ceil(Number(totalItems) / Number(limit));
 
   return (
     <div>
@@ -141,13 +142,13 @@ const MyRequests = ({ loggedInUser }: any) => {
               </table>
 
               {/* pagination */}
-              {/* {isLoading || myRequests?.bloodRequests?.length === 0 ? (
+              {isLoading || myRequests?.bloodRequests?.length === 0 ? (
                 <div></div>
               ) : (
                 <div
-                  className={`flex justify-end items-center my-5 ${
+                  className={`flex mr-2 lg:mr-28 justify-end items-center my-5 ${
                     myRequests?.bloodRequests?.length < 5
-                      ? 'mt-[323px]'
+                      ? 'mt-[200px]'
                       : 'mt-4'
                   }`}
                 >
@@ -178,14 +179,14 @@ const MyRequests = ({ loggedInUser }: any) => {
                     return null; // Render nothing for invalid pageNumber
                   })}
                   <button
-                    className="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
+                    className="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-200 ml-2"
                     onClick={() => handlePageChange(Number(page) + 1)}
                     disabled={Number(page) === totalPages}
                   >
                     Next
                   </button>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         </div>
