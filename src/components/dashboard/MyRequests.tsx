@@ -65,7 +65,7 @@ const MyRequests = ({ loggedInUser }: any) => {
                     <th scope="col" className="px-6 py-3">
                       Donor Mobile
                     </th>
-                    <th scope="col" className="px-6 py-3 hidden ">
+                    <th scope="col" className="px-6 py-3">
                       Donor Blood Group
                     </th>
                     <th scope="col" className="px-6 py-3">
@@ -120,7 +120,7 @@ const MyRequests = ({ loggedInUser }: any) => {
                                 request?.requestStatus === 'rejected') &&
                                 'Hidden'}
                             </td>
-                            <td className="px-6 py-4 hidden">
+                            <td className="px-6 py-4">
                               {request?.donor?.bloodGroup}
                             </td>
                             <td
